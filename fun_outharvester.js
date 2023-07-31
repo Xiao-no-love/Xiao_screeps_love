@@ -1,14 +1,10 @@
-var roleOutharvester = {
+var fun_outharvester = {
     run: function (creep) {
         // 检查 creep 是否已经挖满矿石
         if (creep.store.getFreeCapacity() === 0) {
             // 如果挖满了，返回原房间
-            if (creep.room == Game.spawns['Spawn1'].room) {
-                var creepFindtask = require('creep.findtask');
-                creepFindtask.run(creep);
-            } else {
-                creep.moveTo(Game.spawns['Spawn1'].room.controller);
-            }
+            creep.moveTo(Game.spawns['Spawn1'].room.controller);
+            creep.upgradeController(Game.spawns['Spawn1'].room.controller);
             return;
         }
 
@@ -29,14 +25,6 @@ var roleOutharvester = {
             } else {
                 creep.moveTo(new RoomPosition(25, 25, bottomRoomName));
             }
-            // 如果下面房间存在，移动到下面房间
-            // var bottomRoomNameTerrain = Game.map.getRoomTerrain(bottomRoomName);
-            // var sources = bottomRoomName.find(FIND_SOURCES);
-            // if (sources.length > 0) {
-            //     if (creep.harvest(sources[0]) === ERR_NOT_IN_RANGE) {
-            //         creep.moveTo(sources[0]);
-            //     }
-            // }
         } else {
             // 如果下面房间不存在，则返回原房间
             creep.moveTo(Game.spawns['Spawn1'].room.controller);
@@ -46,4 +34,4 @@ var roleOutharvester = {
     }
 }
 
-module.exports = roleOutharvester;
+module.exports = fun_outharvester;
